@@ -51,7 +51,21 @@ Before a release is considered reproducible:
 
 ## First Build Target
 
-Start with the vanilla target:
+Start from the exact baseline release commit:
+
+- Release tag: `1755162498`
+- `MP01-LineageGSI` commit:
+  `99bd410eb7e620998db4be5246b23f36f531d4fe`
+- Local source worktree:
+  `/Users/j/Code/MP01/.worktrees/reproduce-1755162498`
+- Known-good release archive:
+  `/Users/j/Code/MP01/mp01-baseline/release-assets/MP01-Lineage-1755162498-signed.tar.gz`
+- Known-good release SHA256:
+  `d6b3f74d30ca84a186b926027afa7340a15450c5fd05720919cde57e1a887b1f`
+- Reconstructed source map:
+  [`baseline-source-map-1755162498.md`](baseline-source-map-1755162498.md)
+
+Build the vanilla target first:
 
 ```bash
 lunch treble_arm64_bvN-bp1a-userdebug
@@ -60,6 +74,24 @@ make target-files-package otatools -j$(nproc --all)
 
 Defer GMS release work until the vanilla build is reproducible and the
 `WITH_ADB_INSECURE` issue in the GMS product is resolved.
+
+The original signed tarball cannot be reproduced byte-for-byte without the
+original private signing keys. The practical target is to reproduce an
+equivalent source build, then sign future releases with intentionally managed
+`MP01-LineageOS` keys.
+
+## Current Execution Blockers
+
+- `/Users/j/Code/MP01` does not yet have a container compose config, so
+  `/Users/j/.codex/bin/codex-in-container` cannot run build commands from this
+  workspace.
+- The inherited `build.sh` requires `~/.android-certs` before it will build,
+  even for the first vanilla reproduction attempt.
+- The inherited `build.sh` clones `MP01Support` from the moving default branch
+  instead of the baseline tag, so it must be patched or run from a controlled
+  checkout before it can reproduce `1755162498`.
+- Several manifest inputs are floating branches. They need to be resolved to
+  commit SHAs before claiming reproducibility.
 
 ## Build Script Cleanup Before Use
 
