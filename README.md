@@ -23,6 +23,15 @@ started in `MP01Experiments`.
 4. Turn known setup workarounds into defaults for keyboard, IMS, launcher, and e-ink readability.
 5. Establish a small hardware test matrix for boot, OTA, keyboard, telephony, SMS/MMS, IMS, suspend/resume, and e-ink refresh behavior.
 
+## Maintainer Docs
+
+- [Current state](docs/current-state.md)
+- [Baseline capture](docs/baseline-capture.md)
+- [Reproducible build plan](docs/reproducible-build.md)
+- [Release hygiene](docs/release-hygiene.md)
+- [Hardware test matrix](docs/hardware-test-matrix.md)
+- [Working MP01 baseline template](baselines/working-mp01-2026-05.md)
+
 ## Remote Layout
 
 Local checkouts should use:
