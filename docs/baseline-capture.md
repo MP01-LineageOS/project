@@ -35,11 +35,13 @@ That guide uses `fastbootd`, flashes `system.img`, erases `userdata`, erases
 
 ## Low-Risk ADB Snapshot
 
-Run with the phone connected and USB debugging enabled:
+Run from the project workspace with the phone connected and USB debugging
+enabled. Keep captured artifacts under `/Users/j/Code/MP01/mp01-baseline`;
+do not put project artifacts at filesystem root or elsewhere on the host.
 
 ```bash
-mkdir -p mp01-baseline-$(date +%Y%m%d)
-cd mp01-baseline-$(date +%Y%m%d)
+mkdir -p /Users/j/Code/MP01/mp01-baseline
+cd /Users/j/Code/MP01/mp01-baseline
 
 adb devices -l | tee adb-devices.txt
 adb shell getprop | tee getprop.txt
