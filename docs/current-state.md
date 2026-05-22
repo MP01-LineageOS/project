@@ -6,8 +6,10 @@ maintenance under `MP01-LineageOS`.
 ## Verified Hardware Baseline
 
 An MP01 phone has already been flashed with the existing OS and verified to
-boot and work at a basic level. The exact image, source revisions, flashing
-steps, carrier, and post-install settings still need to be recorded in
+boot and work at a basic level. The install followed the original
+[Minimal Phone MP01 Unlock & Flashing Guide](https://chardidath.ing/posts/mp01-flashing-guide/).
+The exact image, source revisions, carrier, and post-install settings still
+need to be recorded in
 [`../baselines/working-mp01-2026-05.md`](../baselines/working-mp01-2026-05.md).
 
 ## Primary Integration Repo

@@ -24,6 +24,15 @@ Record manually:
 Use [`../baselines/working-mp01-2026-05.md`](../baselines/working-mp01-2026-05.md)
 as the baseline record.
 
+The current known install was performed using:
+
+```text
+https://chardidath.ing/posts/mp01-flashing-guide/
+```
+
+That guide uses `fastbootd`, flashes `system.img`, erases `userdata`, erases
+`metadata`, and reboots. The exact release asset still needs to be identified.
+
 ## Low-Risk ADB Snapshot
 
 Run with the phone connected and USB debugging enabled:

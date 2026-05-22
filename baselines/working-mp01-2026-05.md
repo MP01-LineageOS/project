@@ -9,7 +9,7 @@ OS behavior.
 - Installed OS: unknown exact image
 - Android base: likely LineageOS 22.2 / Android 15
 - Build variant: unknown
-- Install verified by:
+- Install verified by: user report that the OS is installed and working on MP01
 - Install date:
 - Current maintainer:
 
@@ -41,9 +41,21 @@ OS behavior.
 - Host OS:
 - Tools used:
 - Unlock state:
-- Flashing guide:
+- Flashing guide: https://chardidath.ing/posts/mp01-flashing-guide/
 - Commands used:
+  - `adb reboot bootloader`
+  - `fastboot flashing unlock`
+  - `fastboot reboot fastboot` or `adb reboot fastboot`
+  - `fastboot flash system <path to system.img>`
+  - `fastboot erase userdata`
+  - `fastboot erase metadata`
+  - `fastboot reboot`
 - Recovery/rollback notes:
+
+The guide instructs users to download the latest image from the original
+`chardidathing/MP01-LineageGSI` releases page, extract the `.tar.gz`, flash the
+resulting `.img` from `fastbootd`, then erase `userdata` and `metadata`.
+The exact release asset used for this phone is still unknown.
 
 ## Hardware Notes
 
