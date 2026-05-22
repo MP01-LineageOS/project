@@ -31,7 +31,9 @@ https://chardidath.ing/posts/mp01-flashing-guide/
 ```
 
 That guide uses `fastbootd`, flashes `system.img`, erases `userdata`, erases
-`metadata`, and reboots. The exact release asset still needs to be identified.
+`metadata`, and reboots. The working phone was installed from the latest
+original `MP01Experiments/MP01-LineageGSI` release:
+`MP01-Lineage-1755162498-signed.tar.gz`.
 
 ## Low-Risk ADB Snapshot
 
