@@ -11,6 +11,8 @@ boot and work at a basic level. The install followed the original
 The exact image, source revisions, carrier, and post-install settings still
 need to be recorded in
 [`../baselines/working-mp01-2026-05.md`](../baselines/working-mp01-2026-05.md).
+Telephony, SMS/MMS, mobile data, and IMS have not been tested yet because no
+SIM is installed in the phone.
 
 ## Primary Integration Repo
 

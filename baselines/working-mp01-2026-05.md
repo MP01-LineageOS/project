@@ -60,8 +60,8 @@ The exact release asset used for this phone is still unknown.
 ## Hardware Notes
 
 - Screen firmware version:
-- Carrier:
-- SIM type:
+- Carrier: not tested; no SIM installed yet
+- SIM type: none installed yet
 - Region/country:
 - Bootloader state:
 - Storage size:
@@ -83,11 +83,11 @@ The exact release asset used for this phone is still unknown.
 | Boot/setup | Unknown |  |
 | Wi-Fi | Unknown |  |
 | Bluetooth | Unknown |  |
-| Mobile data | Unknown |  |
-| Calls | Unknown |  |
-| SMS | Unknown |  |
-| MMS | Unknown |  |
-| VoLTE/IMS | Unknown |  |
+| Mobile data | Not tested | No SIM installed yet |
+| Calls | Not tested | No SIM installed yet |
+| SMS | Not tested | No SIM installed yet |
+| MMS | Not tested | No SIM installed yet |
+| VoLTE/IMS | Not tested | No SIM installed yet |
 | Physical keyboard | Unknown |  |
 | E-ink refresh | Unknown |  |
 | Suspend/resume | Unknown |  |
