@@ -1,15 +1,15 @@
 # Working MP01 Baseline - May 2026
 
-Status: incomplete. Fill this from the already-working phone before changing
-OS behavior.
+Status: ADB baseline captured on May 22, 2026. Raw logs are local-only because
+they contain device identifiers.
 
 ## Summary
 
 - Device: Minimal Phone MP01
-- Installed OS: unknown exact image
-- Android base: likely LineageOS 22.2 / Android 15
-- Build variant: unknown
-- Install verified by: user report that the OS is installed and working on MP01
+- Installed OS: LineageOS GSI, exact release asset still unknown
+- Android base: LineageOS 22.2 / Android 15
+- Build variant: `treble_arm64_bvN-userdebug`
+- Install verified by: user report and ADB snapshot from the working phone
 - Install date:
 - Current maintainer:
 
@@ -18,11 +18,11 @@ OS behavior.
 - Image filename:
 - Image URL:
 - Image SHA256:
-- Release/tag:
-- Build date shown on device:
-- Security patch level:
-- GMS or vanilla:
-- Signed or unsigned:
+- Release/tag: `22.2-20250814-VANILLA-EXT4-GSI` shown on device
+- Build date shown on device: Thu Aug 14 08:30:17 UTC 2025
+- Security patch level: system 2025-07-01; vendor 2025-11-05
+- GMS or vanilla: VANILLA; no `com.google.android.gms` or Play Store package observed
+- Signed or unsigned: `release-keys` tags on a `userdebug` build
 
 ## Source Mapping
 
@@ -62,43 +62,47 @@ The exact release asset used for this phone is still unknown.
 - Screen firmware version:
 - Carrier: not tested; no SIM installed yet
 - SIM type: none installed yet
-- Region/country:
-- Bootloader state:
-- Storage size:
+- Region/country: locale `en-US`; SIM absent
+- Bootloader state: unlocked; verified boot state `orange`
+- Storage size: `/data` reports 228G total, 226G available at capture time
+- Kernel: 5.10.233 Android 12 vendor kernel, built Feb 20 2025
+- SoC: MediaTek MT6789
 
 ## Manual Workarounds Applied
 
-- PHH presets:
+- PHH presets: MP01 overlay enabled (`me.phh.treble.overlay.minimal.mp01`)
 - IMS APN:
-- IMS APK:
-- FinQwerty layout:
-- Default launcher:
-- Light theme:
+- IMS APK: MTK IMS telephony overlay enabled; SIM/IMS behavior not tested
+- FinQwerty layout: package installed; selected physical layout still needs manual verification
+- Default launcher: `app.inkos/com.github.gezimos.inkos.MainActivity`
+- Light theme: enabled (`ui_night_mode=1`)
 - E-ink refresh setting:
 
 ## Test Results
 
 | Area | Status | Notes |
 | --- | --- | --- |
-| Boot/setup | Unknown |  |
-| Wi-Fi | Unknown |  |
+| Boot/setup | Pass | User reported working install; ADB reports setup complete |
+| Wi-Fi | Unknown | Wi-Fi was off during ADB capture |
 | Bluetooth | Unknown |  |
 | Mobile data | Not tested | No SIM installed yet |
 | Calls | Not tested | No SIM installed yet |
 | SMS | Not tested | No SIM installed yet |
 | MMS | Not tested | No SIM installed yet |
 | VoLTE/IMS | Not tested | No SIM installed yet |
-| Physical keyboard | Unknown |  |
+| Physical keyboard | Unknown | FinQwerty is installed; layout still needs manual verification |
 | E-ink refresh | Unknown |  |
 | Suspend/resume | Unknown |  |
-| Charging | Unknown |  |
-| OTA | Unknown |  |
+| Charging | Unknown | Battery service reported charging and 13% level during capture |
+| OTA | Unknown | Device still points OTA URL at `MP01Experiments/MP01-LineageGSI` |
 
 ## Raw Evidence
 
 Keep raw bugreports private unless redacted.
 
-- ADB snapshot folder:
-- Bugreport filename:
+- ADB snapshot folder: `/Users/j/Code/MP01/mp01-baseline`
+- Bugreport filename: not captured
 - Photos/screenshots:
-- Notes:
+- Notes: captured `getprop`, package list, settings, mount/df, input, display,
+  power, battery, telecom, telephony registry, overlays, launcher resolution,
+  and recent activity state.
