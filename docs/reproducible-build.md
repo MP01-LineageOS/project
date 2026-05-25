@@ -82,14 +82,13 @@ equivalent source build, then sign future releases with intentionally managed
 
 ## Current Execution Blockers
 
-- `/Users/j/Code/MP01` does not yet have a container compose config, so
-  `/Users/j/.codex/bin/codex-in-container` cannot run build commands from this
-  workspace.
-- The inherited `build.sh` requires `~/.android-certs` before it will build,
-  even for the first vanilla reproduction attempt.
-- The inherited `build.sh` clones `MP01Support` from the moving default branch
-  instead of the baseline tag, so it must be patched or run from a controlled
-  checkout before it can reproduce `1755162498`.
+- `/Users/j/Code/MP01` has a managed Codex container config, but a full Android
+  build has not been run in it yet.
+- `build.sh` still requires `~/.android-certs` before it will build, even for
+  the first vanilla reproduction attempt.
+- `build.sh` now uses pinned APK and repo-launcher inputs, but it still builds
+  from current maintained branches by default. Reproducing `1755162498` still
+  requires a controlled source checkout matching the baseline source map.
 - Several manifest inputs are floating branches. They need to be resolved to
   commit SHAs before claiming reproducibility.
 
@@ -98,11 +97,8 @@ equivalent source build, then sign future releases with intentionally managed
 The inherited scripts should be updated before becoming official release
 scripts:
 
-- Replace `MP01Experiments` URLs with `MP01-LineageOS`.
 - Remove destructive assumptions or make them explicit behind a flag.
 - Split sync, patch, build, sign, package, and publish into separate steps.
-- Pin FinQwerty and F-Droid APK downloads.
-- Fail closed on APK verification mismatch.
 - Keep release publishing separate from local build generation.
 - Avoid writing OTA metadata until artifacts and checksums are final.
 

@@ -16,10 +16,12 @@ Status: accepted known-good baseline. ADB baseline was captured on May 22,
 ## Image Details
 
 - Image filename: `MP01-Lineage-1755162498-signed.tar.gz`
-- Image URL: https://github.com/MP01Experiments/MP01-LineageGSI/releases/download/1755162498/MP01-Lineage-1755162498-signed.tar.gz
+- Image URL: https://github.com/MP01-LineageOS/MP01-LineageGSI/releases/download/1755162498/MP01-Lineage-1755162498-signed.tar.gz
+- Original source URL: https://github.com/MP01Experiments/MP01-LineageGSI/releases/download/1755162498/MP01-Lineage-1755162498-signed.tar.gz
 - Image SHA256: `d6b3f74d30ca84a186b926027afa7340a15450c5fd05720919cde57e1a887b1f`
 - Release/tag: `1755162498`; device reports `22.2-20250814-VANILLA-EXT4-GSI`
-- Release page: https://github.com/MP01Experiments/MP01-LineageGSI/releases/tag/1755162498
+- Release page: https://github.com/MP01-LineageOS/MP01-LineageGSI/releases/tag/1755162498
+- Original release page: https://github.com/MP01Experiments/MP01-LineageGSI/releases/tag/1755162498
 - Release published: 2025-08-14T10:44:07Z
 - Build date shown on device: Thu Aug 14 08:30:17 UTC 2025
 - Security patch level: system 2025-07-01; vendor 2025-11-05
@@ -97,7 +99,7 @@ The phone was installed from the current latest original release,
 | E-ink refresh | Unknown |  |
 | Suspend/resume | Unknown |  |
 | Charging | Unknown | Battery service reported charging and 13% level during capture |
-| OTA | Unknown | Device still points OTA URL at `MP01Experiments/MP01-LineageGSI` |
+| OTA | Unknown | Installed baseline image still points OTA URL at `MP01Experiments/MP01-LineageGSI`; repository OTA metadata now points future builds at `MP01-LineageOS/MP01-LineageGSI` |
 
 ## Raw Evidence
 

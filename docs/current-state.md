@@ -46,19 +46,28 @@ converted into build or first-boot defaults:
 5. Switch from dark theme to light theme for e-ink readability.
 6. Tune or disable automatic e-ink per-app refresh behavior when it misbehaves.
 
-## Immediate Maintenance Risks
+## Resolved Release Hygiene
 
-- Build scripts still clone from `MP01Experiments` instead of
-  `MP01-LineageOS`.
-- `treble_arm64_bvN.mk` still points OTA metadata at the old
-  `MP01Experiments` raw GitHub URL.
-- `treble_arm64_bgN.mk` contains `WITH_ADB_INSECURE := true`.
-- Release scripts download the latest FinQwerty release dynamically instead of
-  pinning an exact version and checksum.
-- F-Droid APK verification currently logs a mismatch but does not fail closed.
+The first release-hygiene pass landed on May 25, 2026:
+
+- `MP01-LineageGSI` commit `e070c60` moves active build, support, OTA, and
+  release URLs to `MP01-LineageOS`.
+- `treble_manifest` commit `bb7584f` moves `vendor_hardware_overlay` to the
+  `MP01-LineageOS` fork.
+- FinQwerty, F-Droid, and the repo launcher are pinned by URL and SHA256 in
+  `MP01-LineageGSI/scripts/release-inputs.sh`.
+- F-Droid APK content and signing certificate verification now fail closed.
+- The GMS product makefile no longer sets `WITH_ADB_INSECURE := true`.
+- Baseline release `1755162498` and FinQwerty release `76cef2d` are mirrored
+  into `MP01-LineageOS` releases.
+
+## Remaining Maintenance Risks
+
 - The release path assumes private signing materials exist in `~/.android-certs`.
 - The exact installed working image has only a reconstructed source map because
   the inherited build used moving branches and latest-release downloads.
+- Future reproducible builds still need full source revision locking for
+  Android, TrebleDroid, and MP01 patches.
 
 ## Fork Layout
 
@@ -70,7 +79,6 @@ Local checkout remotes should be:
 
 ## Next Decision
 
-Do not change Android behavior until the inherited release inputs and fork drift
-are documented. The first code change should be a narrow release hygiene pass
-in `MP01-LineageGSI`, followed by low-risk defaults that remove manual setup
-steps.
+The next code work should be low-risk defaults that remove manual setup steps,
+plus an upstream update policy for Android, TrebleDroid, Fossify, and MP01
+patches.

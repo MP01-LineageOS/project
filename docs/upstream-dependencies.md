@@ -1,14 +1,15 @@
 # Upstream Dependencies
 
 This records the current fork and upstream map for `MP01-LineageOS`. Counts are
-from local fetches on May 24, 2026.
+from local fetches on May 24, 2026, with release-hygiene updates added on
+May 25, 2026.
 
 ## Maintained Forks
 
 | Repo | Purpose | Branch | Upstream | Drift |
 | --- | --- | --- | --- | --- |
-| `MP01-LineageGSI` | Primary build, release, signing, OTA, and MP01 product integration | `15` | `MisterZtr/LineageOS_gsi` | `85` ahead / `51` behind upstream default `lineage-23.2`; identical to `MP01Experiments/15` |
-| `treble_manifest` | Local manifest for Treble/Lineage dependency sync | `15-los-qpr2` | `MisterZtr/treble_manifest` | `12` ahead / `6` behind upstream default `lineage-23.2`; identical to `MP01Experiments/15-los-qpr2` |
+| `MP01-LineageGSI` | Primary build, release, signing, OTA, and MP01 product integration | `15` | `MisterZtr/LineageOS_gsi` | Contains release-hygiene commit `e070c60` on top of inherited `MP01Experiments/15` |
+| `treble_manifest` | Local manifest for Treble/Lineage dependency sync | `15-los-qpr2` | `MisterZtr/treble_manifest` | Contains manifest hygiene commit `bb7584f` on top of inherited `MP01Experiments/15-los-qpr2` |
 | `device_phh_treble` | PHH/TrebleDroid generic device tree and GSI targets | `android-16.0` | `TrebleDroid/device_phh_treble` | `0` ahead / `4` behind upstream `android-16.0`; identical to `MP01Experiments/android-16.0` |
 | `vendor_hardware_overlay` | Runtime resource overlays for vendor/device quirks, IMS, telephony, Wi-Fi, and Treble app wiring | `pie` | `TrebleDroid/vendor_hardware_overlay` | `9` ahead / `9` behind upstream `pie`; identical to `MP01Experiments/pie` |
 | `treble_app` | Privileged TrebleDroid settings app and preset application logic | `master` | `TrebleDroid/treble_app` | `7` ahead / `2` behind upstream `master`; identical to `MP01Experiments/master` |
@@ -26,7 +27,7 @@ the Android tree:
 | Path | Project | Revision |
 | --- | --- | --- |
 | `device/phh/treble` | `TrebleDroid/device_phh_treble` | `android-15.0` |
-| `vendor/hardware_overlay` | `MP01Experiments/vendor_hardware_overlay` | `pie` |
+| `vendor/hardware_overlay` | `MP01-LineageOS/vendor_hardware_overlay` | `pie` |
 | `vendor/vndk-tests` | `phhusson/vendor_vndk-tests` | `master` |
 | `vendor/interfaces` | `TrebleDroid/vendor_interfaces` | `android-15.0` |
 | `vendor/lptools` | `phhusson/vendor_lptools` | `master` |
@@ -45,9 +46,9 @@ the Android tree:
 - The accepted baseline image is the original developer release
   `1755162498`; do not treat current branch heads as a cryptographic rebuild
   lock for that image.
-- `treble_manifest` still references `MP01Experiments/vendor_hardware_overlay`.
-  Move this to `MP01-LineageOS/vendor_hardware_overlay` as part of release
-  hygiene.
+- `treble_manifest` now references `MP01-LineageOS/vendor_hardware_overlay`.
+  Keep this dependency on the MP01 org unless intentionally testing upstream
+  overlay drift.
 - `Phone` and `Messages` are far behind Fossify upstream. Do not bulk-merge
   them without MP01 UI/e-ink testing.
 - TrebleDroid components should be updated conservatively and together, because

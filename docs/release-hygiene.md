@@ -4,12 +4,18 @@ Release hygiene comes before feature work. The MP01 image affects a real phone,
 telephony, OTA behavior, and user data, so releases need to be boring,
 traceable, and reversible.
 
-## Blocking Issues Before Public Release
+## Completed Hygiene
 
-- Remove `WITH_ADB_INSECURE := true` from release builds.
-- Move all `MP01Experiments` build, OTA, and release URLs to `MP01-LineageOS`.
-- Pin every downloaded artifact by version and SHA256.
-- Make APK signature or checksum verification fail closed.
+- `MP01-LineageGSI` commit `e070c60` removes the GMS insecure ADB product
+  default, moves active URLs to `MP01-LineageOS`, and pins downloaded release
+  inputs.
+- `treble_manifest` commit `bb7584f` moves the MP01 hardware overlay manifest
+  dependency to `MP01-LineageOS/vendor_hardware_overlay`.
+- FinQwerty release `76cef2d` and baseline OS release `1755162498` are mirrored
+  into `MP01-LineageOS` GitHub releases with matching SHA256 digests.
+
+## Remaining Issues Before Public Release
+
 - Ensure private signing keys are never committed, printed, uploaded, or
   required from a repo checkout.
 - Document whether a release is `user`, `userdebug`, vanilla, or GMS.
@@ -60,10 +66,11 @@ MP01-LineageOS-YYYY.MM.DD-android15-gms
 
 Add `dev`, `userdebug`, or `test` to non-release builds.
 
-## Immediate Follow-Up PRs
+## Immediate Follow-Up Work
 
-1. Update org URLs in build scripts, product makefiles, README, and OTA JSON.
-2. Remove insecure GMS release defaults.
-3. Pin FinQwerty and F-Droid downloads.
-4. Convert release script into explicit build/sign/publish stages.
-5. Add source revision capture to release output.
+1. Convert release scripts into explicit build/sign/publish stages.
+2. Add source revision capture to release output.
+3. Turn accepted MP01 manual setup workarounds into build or first-boot
+   defaults.
+4. Define the upstream update policy for Android, TrebleDroid, Fossify, and
+   MP01 patches.
