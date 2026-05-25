@@ -34,17 +34,24 @@ Bundled MP01 packages:
 - `finqwerty`
 - `F-DroidPrivilegedExtension`
 
-## Known Manual Workarounds
+## Device Defaults Work
 
-These are documented in the inherited `MP01-LineageGSI` README and should be
-converted into build or first-boot defaults:
+Issue `#10` tracks inherited manual setup steps that should become build or
+first-boot defaults. The first pass converted the lowest-risk defaults and
+documented ownership in [`device-defaults.md`](device-defaults.md).
 
-1. Apply PHH device presets manually from Settings.
-2. Create IMS APN and install the MediaTek IMS APK manually from PHH settings.
-3. Select `QWERTY English Layout for Minimal Phone MP01` in FinQwerty.
-4. Set inkOS as the default launcher manually.
-5. Switch from dark theme to light theme for e-ink readability.
-6. Tune or disable automatic e-ink per-app refresh behavior when it misbehaves.
+Completed in this pass:
+
+- MP01 keyboard files are treated as the system default; FinQwerty manual
+  selection is no longer documented as required when those files are present.
+- SetupWizard targets the real inkOS home component.
+- `MP01AccessibilityService` seeds light mode before setup completes.
+- PHH preset downloads use a pinned `MP01-LineageOS/treble_presets` source.
+
+Still deferred:
+
+- IMS behavior beyond the existing preset and overlay inventory.
+- E-ink per-app refresh tuning.
 
 ## Resolved Release Hygiene
 

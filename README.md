@@ -30,6 +30,7 @@ started in `MP01Experiments`.
 - [Upstream dependencies](docs/upstream-dependencies.md)
 - [Reproducible build plan](docs/reproducible-build.md)
 - [Release hygiene](docs/release-hygiene.md)
+- [Device defaults](docs/device-defaults.md)
 - [Hardware test matrix](docs/hardware-test-matrix.md)
 - [Working MP01 baseline template](baselines/working-mp01-2026-05.md)
 

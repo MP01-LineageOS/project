@@ -13,8 +13,9 @@ Use this checklist for the known-good baseline and every release candidate.
 ## Setup Flow
 
 - First boot completes without crash loops.
-- Default launcher can be selected.
-- Light theme is available and readable on e-ink.
+- Default launcher resolves to inkOS.
+- Light theme is active and readable on e-ink.
+- `settings get secure mp01_defaults_version` returns the expected defaults version.
 - PHH Settings opens.
 - My Device preset entry appears for Minimal Phone MP01.
 
@@ -32,8 +33,8 @@ Use this checklist for the known-good baseline and every release candidate.
 
 - Physical keyboard types expected letters.
 - Shift, symbol, enter, delete, space, and punctuation work.
-- FinQwerty MP01 layout is available.
-- FinQwerty MP01 layout persists across reboot.
+- System input files for `aw9523b-key` are active.
+- FinQwerty MP01 layout is available as a fallback.
 - Hardware refresh button behavior is documented.
 - Volume/power buttons work.
 
