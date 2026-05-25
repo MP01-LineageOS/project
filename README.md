@@ -27,6 +27,7 @@ started in `MP01Experiments`.
 
 - [Current state](docs/current-state.md)
 - [Baseline capture](docs/baseline-capture.md)
+- [Upstream dependencies](docs/upstream-dependencies.md)
 - [Reproducible build plan](docs/reproducible-build.md)
 - [Release hygiene](docs/release-hygiene.md)
 - [Hardware test matrix](docs/hardware-test-matrix.md)

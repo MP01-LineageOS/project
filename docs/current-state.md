@@ -3,16 +3,17 @@
 This captures the state inherited from `MP01Experiments` before starting active
 maintenance under `MP01-LineageOS`.
 
-## Verified Hardware Baseline
+## Accepted Hardware Baseline
 
-An MP01 phone has already been flashed with the existing OS and verified to
-boot and work at a basic level. The install followed the original
+An MP01 phone has already been flashed with the original developer release
+`1755162498` and verified by the maintainer as the known-good baseline. The
+install followed the original
 [Minimal Phone MP01 Unlock & Flashing Guide](https://chardidath.ing/posts/mp01-flashing-guide/).
-The exact image, source revisions, carrier, and post-install settings still
-need to be recorded in
+The phone boots, the baseline image is accepted, and SIM/radio behavior has
+been tested successfully on that image.
+
+The baseline record lives in
 [`../baselines/working-mp01-2026-05.md`](../baselines/working-mp01-2026-05.md).
-Telephony, SMS/MMS, mobile data, and IMS have not been tested yet because no
-SIM is installed in the phone.
 
 ## Primary Integration Repo
 
@@ -56,8 +57,8 @@ converted into build or first-boot defaults:
   pinning an exact version and checksum.
 - F-Droid APK verification currently logs a mismatch but does not fail closed.
 - The release path assumes private signing materials exist in `~/.android-certs`.
-- The exact installed working image has not been mapped back to source
-  revisions yet.
+- The exact installed working image has only a reconstructed source map because
+  the inherited build used moving branches and latest-release downloads.
 
 ## Fork Layout
 
@@ -69,6 +70,7 @@ Local checkout remotes should be:
 
 ## Next Decision
 
-Do not change Android behavior until the working phone baseline is captured.
-The first code change should be a narrow release hygiene pass in
-`MP01-LineageGSI`, after the current working image and source inputs are known.
+Do not change Android behavior until the inherited release inputs and fork drift
+are documented. The first code change should be a narrow release hygiene pass
+in `MP01-LineageGSI`, followed by low-risk defaults that remove manual setup
+steps.

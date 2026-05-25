@@ -1,7 +1,7 @@
 # Working MP01 Baseline - May 2026
 
-Status: ADB baseline captured on May 22, 2026. Raw logs are local-only because
-they contain device identifiers.
+Status: accepted known-good baseline. ADB baseline was captured on May 22,
+2026; raw logs are local-only because they contain device identifiers.
 
 ## Summary
 
@@ -9,7 +9,7 @@ they contain device identifiers.
 - Installed OS: LineageOS GSI from the latest original release at install time
 - Android base: LineageOS 22.2 / Android 15
 - Build variant: `treble_arm64_bvN-userdebug`
-- Install verified by: user report and ADB snapshot from the working phone
+- Install verified by: maintainer report and ADB snapshot from the working phone
 - Install date:
 - Current maintainer:
 
@@ -63,9 +63,9 @@ The phone was installed from the current latest original release,
 ## Hardware Notes
 
 - Screen firmware version:
-- Carrier: not tested; no SIM installed yet
-- SIM type: none installed yet
-- Region/country: locale `en-US`; SIM absent
+- Carrier: tested by maintainer; exact carrier not recorded in this public doc
+- SIM type: tested by maintainer; exact SIM details not recorded in this public doc
+- Region/country: locale `en-US`
 - Bootloader state: unlocked; verified boot state `orange`
 - Storage size: `/data` reports 228G total, 226G available at capture time
 - Kernel: 5.10.233 Android 12 vendor kernel, built Feb 20 2025
@@ -75,7 +75,7 @@ The phone was installed from the current latest original release,
 
 - PHH presets: MP01 overlay enabled (`me.phh.treble.overlay.minimal.mp01`)
 - IMS APN:
-- IMS APK: MTK IMS telephony overlay enabled; SIM/IMS behavior not tested
+- IMS APK: MTK IMS telephony overlay enabled
 - FinQwerty layout: package installed; selected physical layout still needs manual verification
 - Default launcher: `app.inkos/com.github.gezimos.inkos.MainActivity`
 - Light theme: enabled (`ui_night_mode=1`)
@@ -88,11 +88,11 @@ The phone was installed from the current latest original release,
 | Boot/setup | Pass | User reported working install; ADB reports setup complete |
 | Wi-Fi | Unknown | Wi-Fi was off during ADB capture |
 | Bluetooth | Unknown |  |
-| Mobile data | Not tested | No SIM installed yet |
-| Calls | Not tested | No SIM installed yet |
-| SMS | Not tested | No SIM installed yet |
-| MMS | Not tested | No SIM installed yet |
-| VoLTE/IMS | Not tested | No SIM installed yet |
+| Mobile data | Pass | Tested by maintainer on the accepted baseline image |
+| Calls | Pass | Tested by maintainer on the accepted baseline image |
+| SMS | Pass | Tested by maintainer on the accepted baseline image |
+| MMS | Unknown | Not separately recorded |
+| VoLTE/IMS | Pass | Radio/SIM behavior reported working on the accepted baseline image |
 | Physical keyboard | Unknown | FinQwerty is installed; layout still needs manual verification |
 | E-ink refresh | Unknown |  |
 | Suspend/resume | Unknown |  |
