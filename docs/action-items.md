@@ -33,6 +33,21 @@ Definition of done:
 - A fresh sync from the staged branches can resolve every MP01 repo named in
   the manifest.
 
+Progress:
+
+- The relevant worktrees are clean.
+- `qstage --target-branch lineage-23.2` currently fails because the registry
+  remote does not have `lineage-23.2` branches yet.
+- Existing staged submissions target the registered default branches
+  (`15`, `15-los-qpr2`, and `pie`), so they do not by themselves create the
+  intended LineageOS 23.2 branch layout.
+
+Open decision:
+
+- Either create/update the remote `lineage-23.2` branches through the delegated
+  publish flow before staging against them, or intentionally stage the 23.2
+  patch series onto the existing registered default branches.
+
 ## 2. Fix local build tooling blockers
 
 Install or provide the required build validation tools in the development qube:
