@@ -29,6 +29,7 @@ started in `MP01Experiments`.
 - [Baseline capture](docs/baseline-capture.md)
 - [Upstream dependencies](docs/upstream-dependencies.md)
 - [Upstream update policy](docs/upstream-update-policy.md)
+- [LineageOS 23.2 migration](docs/lineage-23.2-migration.md)
 - [Reproducible build plan](docs/reproducible-build.md)
 - [Release hygiene](docs/release-hygiene.md)
 - [Device defaults](docs/device-defaults.md)
