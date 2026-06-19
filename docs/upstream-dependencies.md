@@ -57,3 +57,7 @@ the Android tree:
 - `MP01-LineageGSI` and `treble_manifest` upstream defaults have moved toward
   newer Lineage/Treble branches. Keep Android 15 maintenance separate from any
   future Android 16/Lineage 23 migration.
+
+See [`upstream-update-policy.md`](upstream-update-policy.md) for the update
+cadence, smoke test requirements, and rollback expectations for these
+dependencies.

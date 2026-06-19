@@ -28,6 +28,7 @@ started in `MP01Experiments`.
 - [Current state](docs/current-state.md)
 - [Baseline capture](docs/baseline-capture.md)
 - [Upstream dependencies](docs/upstream-dependencies.md)
+- [Upstream update policy](docs/upstream-update-policy.md)
 - [Reproducible build plan](docs/reproducible-build.md)
 - [Release hygiene](docs/release-hygiene.md)
 - [Device defaults](docs/device-defaults.md)
