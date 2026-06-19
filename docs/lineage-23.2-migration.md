@@ -7,9 +7,9 @@ Android 15 to LineageOS 23.2 / Android 16.
 
 | Repo | Branch | Local commit | Purpose |
 | --- | --- | --- | --- |
-| `MP01-LineageGSI` | `lineage-23.2` | `1900b28c1ad2f5f157a14cf0a951e621695d870d` | Android 16 GSI wrapper, patch set, and MP01 microG target. |
+| `MP01-LineageGSI` | `lineage-23.2` | `4ace87727bf7a6d19ae37b4bacf6c4b6e0e4a51c` | Android 16 GSI wrapper, patch set, and MP01 microG target. |
 | `treble_manifest` | `lineage-23.2` | `19c2a81830fc43dcbe10a7f24293db4d51d42f7e` | Android 16 local manifest with MP01-owned support repos. |
-| `vendor_hardware_overlay` | `lineage-23.2` | `fcdce99dceb76f956488ffc415a5a29fdba49960` | Android 16 overlay base plus MP01 runtime overlay. |
+| `vendor_hardware_overlay` | `lineage-23.2` | `987a98f2dd5c49bb1663e06a4ddf224f1e22feb8` | Android 16 overlay base plus MP01 runtime overlay. |
 
 These branches are local in the development qube until qpublish/qadmin has
 branch registry entries for them. Do not push from this qube.
@@ -35,8 +35,9 @@ bash buildmicrog.sh
 ```
 
 `buildmicrog.sh` uses `.android-build/los23.2-microg` by default and lunches
-`lineage_arm64_bmN4-bp4a-userdebug`. The legacy signed `build.sh` and
-`buildgms.sh` are disabled on this branch until release packaging is ported.
+`lineage_arm64_bmN4-bp4a-userdebug`. `build.sh microg` is the generic entry
+point for the same unsigned local test image. `buildgms.sh` stays disabled
+until proprietary GMS release packaging is ported intentionally.
 
 ## Completed Checks
 
@@ -52,7 +53,9 @@ bash buildmicrog.sh
 
 - Run a fresh `buildmicrog.sh` sync/build from the `lineage-23.2` branches.
 - Confirm the 23.2 patch stack applies without ignored patch failures.
-- Archive `repo manifest -r`, image SHA256, and build log.
+- Archive `repo manifest -r`, image SHA256, and build log. New 23.2 build
+  scripts write SHA256 sums, build info, and the resolved manifest under the
+  image output directory on successful builds.
 - Flash `system` only. Do not wipe `userdata` or `metadata`.
 - Run the MP01 smoke test from `hardware-test-matrix.md`, with extra focus on
   Verizon IMS/VoLTE, keyboard input, e-ink refresh, boot brightness, and lock

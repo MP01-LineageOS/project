@@ -12,16 +12,16 @@ started in `MP01Experiments`.
 - [`treble_app`](https://github.com/MP01-LineageOS/treble_app): privileged TrebleDroid settings app and preset application logic.
 - [`treble_presets`](https://github.com/MP01-LineageOS/treble_presets): device preset database, including the Minimal Phone MP01 entry.
 - [`finqwerty`](https://github.com/MP01-LineageOS/finqwerty): physical keyboard layout app with the MP01 keymap.
-- [`Phone`](https://github.com/MP01-LineageOS/Phone): Fossify Phone fork for the MP01 image.
-- [`Messages`](https://github.com/MP01-LineageOS/Messages): Fossify Messages fork for the MP01 image.
+- [`Phone`](https://github.com/MP01-LineageOS/Phone): Fossify Phone fork tracked for possible MP01 image integration.
+- [`Messages`](https://github.com/MP01-LineageOS/Messages): Fossify Messages fork tracked for possible MP01 image integration.
 
 ## Current Priorities
 
-1. Reproduce the existing Android 15 / LineageOS 22.2 build from source.
-2. Document the exact build inputs, release artifacts, and flashing path.
-3. Remove insecure release defaults and pin downloaded release dependencies.
-4. Turn known setup workarounds into defaults for keyboard, IMS, launcher, and e-ink readability.
-5. Establish a small hardware test matrix for boot, OTA, keyboard, telephony, SMS/MMS, IMS, suspend/resume, and e-ink refresh behavior.
+1. Finish the LineageOS 23.2 / Android 16 microG build and archive the resolved source manifest, build log, and SHA256 sums.
+2. Flash only `system` for the first MP01 smoke test; do not wipe userdata or metadata.
+3. Keep signed release, OTA metadata, and proprietary GMS packaging disabled until the 23.2 test image boots and is install-tested.
+4. Tighten release-input verification for every downloaded or checked-in binary.
+5. Validate boot, OTA, keyboard, telephony, SMS/MMS, IMS, suspend/resume, and e-ink refresh behavior on hardware.
 
 ## Maintainer Docs
 

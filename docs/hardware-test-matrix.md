@@ -21,7 +21,7 @@ Use this checklist for the known-good baseline and every release candidate.
 
 ## Display And E-Ink
 
-- Text is readable in Settings, launcher, Phone, and Messages.
+- Text is readable in Settings, launcher, dialer, and messaging.
 - Light theme is usable outdoors and indoors.
 - E-ink refresh button works.
 - Per-app refresh mode can be changed.
@@ -69,8 +69,10 @@ Use this checklist for the known-good baseline and every release candidate.
 
 ## Apps
 
-- Phone app opens and can be set as default.
-- Messages app opens and can be set as default.
+- Inherited dialer opens and can be set as default.
+- Inherited messaging app opens and can be set as default.
+- Fossify Phone/Messages forks are tested here only after they are explicitly
+  added to the 23.2 image.
 - inkOS opens and can be set as default launcher.
 - F-Droid opens.
 - TrebleDroid Settings opens.
