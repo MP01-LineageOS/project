@@ -54,6 +54,29 @@ Install or provide the required build validation tools in the development qube:
 Java/JDK, `openssl`, `keytool`, and `xmlstarlet`. Re-run Gradle, release input
 verification, and overlay tests after the tools are available.
 
+Progress:
+
+- Installed Fedora packages for OpenJDK 21, `openssl`, and `xmlstarlet` in the
+  development qube. This provides `java`, `javac`, `keytool`, `openssl`, and
+  `xmlstarlet`.
+- `bash scripts/verify-release-inputs.sh` now passes in `MP01-LineageGSI`.
+- `bash tests/tests.sh` now runs in `vendor_hardware_overlay` and reports real
+  overlay failures instead of missing-tool noise:
+  - `Minimal/MP01/AndroidManifest.xml` priority 21 conflicts with another
+    manifest.
+  - `overlay.mk` entries are not sorted.
+  - `overlay.mk` is missing the required trailing empty line.
+- `./gradlew --no-daemon assembleDebug` now gets past the missing-Java blocker,
+  but Gradle still needs Android SDK Build-Tools 34. A temporary `android.jar`
+  SDK shim is not enough.
+
+Open decision:
+
+- Installing Google Android SDK command-line tools/build-tools requires
+  accepting the Android SDK license. Decide whether to install that SDK under
+  the user home for local Gradle validation, or keep Gradle validation limited
+  to the Android/Soong build path.
+
 ## 3. Secure the e-ink daemon boundary
 
 The daemon currently accepts commands over an abstract Unix socket without
