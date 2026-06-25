@@ -9,10 +9,10 @@ known-good rollback baseline.
 | Repo | Purpose | Active branch | Current local commit | Upstream |
 | --- | --- | --- | --- | --- |
 | `MP01-LineageGSI` | Primary build, release, patch, OTA, and MP01 product integration | `lineage-23.2` | `4ace87727bf7a6d19ae37b4bacf6c4b6e0e4a51c` | `MisterZtr/LineageOS_gsi` |
-| `treble_manifest` | Local manifest for Treble/Lineage dependency sync | `lineage-23.2` | `19c2a81830fc43dcbe10a7f24293db4d51d42f7e` | `MisterZtr/treble_manifest` |
+| `treble_manifest` | Local manifest for Treble/Lineage dependency sync | `lineage-23.2` | `f5c12df0f07d1f2278326840010b1e481bdd273d` | `MisterZtr/treble_manifest` |
 | `device_phh_treble` | PHH/TrebleDroid generic device tree and GSI target support | `android-16.0` | `76d1a8549290bdbc154ed8a7445719016adb7068` | `TrebleDroid/device_phh_treble` |
-| `vendor_hardware_overlay` | Runtime resource overlays for vendor/device quirks, IMS, telephony, Wi-Fi, and Treble app wiring | `lineage-23.2` | `987a98f2dd5c49bb1663e06a4ddf224f1e22feb8` | `TrebleDroid/vendor_hardware_overlay` |
-| `treble_app` | Privileged TrebleDroid settings app and preset application logic | `master` | `db1556678bcbc8fea08005cf3b26da8d627879c1` | `TrebleDroid/treble_app` |
+| `vendor_hardware_overlay` | Runtime resource overlays for vendor/device quirks, IMS, telephony, Wi-Fi, and Treble app wiring | `lineage-23.2` | `be7cf888f1ba8a9d9cf28c442eb38fbdb22d112f` | `TrebleDroid/vendor_hardware_overlay` |
+| `treble_app` | Privileged TrebleDroid settings app and preset application logic | `master` | `0cb1440e61c3f39afba9a5aa75eef6ab230a7cbe` | `TrebleDroid/treble_app` |
 | `treble_presets` | Device preset database, including Minimal Phone MP01 presets | `master` | `09fdae135930b553c54aba7aa9a07b105132b6ff` | `TrebleDroid/treble_presets` |
 | `finqwerty` | Physical keyboard layout app with MP01 keymap support | `master` | `76cef2d7c3577cb24d271e9c8de5fd430b535745` | `vbbot/finqwerty` |
 | `Phone` | Fossify Phone fork tracked for possible MP01 image integration | `main` | `aa1bde9909effc5a5b7a3f3d528e15c4377a5b54` | `FossifyOrg/Phone` |

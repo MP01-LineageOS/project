@@ -8,8 +8,8 @@ Android 15 to LineageOS 23.2 / Android 16.
 | Repo | Branch | Local commit | Purpose |
 | --- | --- | --- | --- |
 | `MP01-LineageGSI` | `lineage-23.2` | `4ace87727bf7a6d19ae37b4bacf6c4b6e0e4a51c` | Android 16 GSI wrapper, patch set, and MP01 microG target. |
-| `treble_manifest` | `lineage-23.2` | `19c2a81830fc43dcbe10a7f24293db4d51d42f7e` | Android 16 local manifest with MP01-owned support repos. |
-| `vendor_hardware_overlay` | `lineage-23.2` | `987a98f2dd5c49bb1663e06a4ddf224f1e22feb8` | Android 16 overlay base plus MP01 runtime overlay. |
+| `treble_manifest` | `lineage-23.2` | `f5c12df0f07d1f2278326840010b1e481bdd273d` | Android 16 local manifest with MP01-owned support repos. |
+| `vendor_hardware_overlay` | `lineage-23.2` | `be7cf888f1ba8a9d9cf28c442eb38fbdb22d112f` | Android 16 overlay base plus MP01 runtime overlay. |
 
 These branches are local in the development qube until qpublish/qadmin has
 branch registry entries for them. Do not push from this qube.
