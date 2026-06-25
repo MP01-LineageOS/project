@@ -21,18 +21,22 @@ The baseline record lives in
 
 Current build target family:
 
-- Android base: LineageOS 22.2 / Android 15.
-- Vanilla product: `treble_arm64_bvN`.
-- GMS product: `treble_arm64_bgN`.
-- Product device: `tdgsi_arm64_ab`.
+- Android base: LineageOS 23.2 / Android 16.
+- Active test product: `lineage_arm64_bmN4`.
+- Active lunch target: `lineage_arm64_bmN4-bp4a-userdebug`.
 - Product brand/model: `Minimal MP01`.
 - Filesystem flavor: EXT4.
+- Release status: unsigned local microG test image only; signed release, OTA,
+  and proprietary GMS packaging remain disabled until the 23.2 image is built
+  and install-tested.
 
 Bundled MP01 packages:
 
 - `inkos`
 - `finqwerty`
-- `F-DroidPrivilegedExtension`
+- `MP01AccessibilityService`
+- `MP01_eink_server`
+- F-Droid and microG packages from the 23.2 microG build graph
 
 ## Device Defaults Work
 
@@ -70,10 +74,13 @@ The first release-hygiene pass landed on May 25, 2026:
 
 ## Remaining Maintenance Risks
 
-- The release path assumes private signing materials exist in `~/.android-certs`.
-- The exact installed working image has only a reconstructed source map because
-  the inherited build used moving branches and latest-release downloads.
-- Future reproducible builds still need full source revision locking for
+- The 23.2 image still needs a completed source build and MP01 smoke test.
+- The release path for signed images, OTA metadata, and proprietary GMS is not
+  ported to 23.2.
+- The exact installed working Android 15 image has only a reconstructed source
+  map because the inherited build used moving branches and latest-release
+  downloads.
+- Future reproducible releases still need full source revision locking for
   Android, TrebleDroid, and MP01 patches.
 
 ## Fork Layout
@@ -86,6 +93,5 @@ Local checkout remotes should be:
 
 ## Next Decision
 
-The next code work should be low-risk defaults that remove manual setup steps,
-plus an upstream update policy for Android, TrebleDroid, Fossify, and MP01
-patches.
+The next gate is a completed 23.2 microG build, source-manifest capture, `system`
+flash without wiping user data, and hardware smoke-test results.

@@ -1,113 +1,98 @@
 # Reproducible Build Plan
 
-The first build milestone is not a new feature. It is a reproducible build that
-can regenerate the currently working Android 15 image.
+The current build milestone is a traceable LineageOS 23.2 / Android 16 test
+image for MP01. It does not claim byte-for-byte reproducibility yet; the first
+target is to make every source revision, binary input, build log, and output
+checksum available for review.
 
 ## Current Build Inputs
 
-From the inherited scripts:
-
 - Android source: `https://github.com/LineageOS/android.git`
-- Branch: `lineage-22.2`
-- Local manifest branch: `15-los-qpr2`
-- Current manifest repo should be `https://github.com/MP01-LineageOS/treble_manifest`
-- Current support repo should be `https://github.com/MP01-LineageOS/MP01-LineageGSI`
-- Treble target generation: `device/phh/treble/generate.sh lineage`
-- Vanilla lunch target: `treble_arm64_bvN-bp1a-userdebug`
-- GMS lunch target: `treble_arm64_bgN-bp1a-user`
+- Branch: `lineage-23.2`
+- Local manifest repo: `https://github.com/MP01-LineageOS/treble_manifest`
+- Local manifest branch: `lineage-23.2`
+- Support repo: `https://github.com/MP01-LineageOS/MP01-LineageGSI`
+- Support branch: `lineage-23.2`
+- Active lunch target: `lineage_arm64_bmN4-bp4a-userdebug`
+- Output status: unsigned local microG test image
 
 ## Current Manifest Inputs
 
-The current `treble_manifest` pulls:
+The active manifest pulls:
 
-- `TrebleDroid/device_phh_treble`, revision `android-15.0`
-- `MP01Experiments/vendor_hardware_overlay`, revision `pie`
-- `TrebleDroid/vendor_interfaces`, revision `android-15.0`
+- `TrebleDroid/device_phh_treble`, revision `android-16.0`
+- `MP01-LineageOS/treble_app`, revision `master`
+- `MP01-LineageOS/vendor_hardware_overlay`, revision `lineage-23.2`
+- `TrebleDroid/vendor_interfaces`, revision `android-16.0`
 - `phhusson/vendor_vndk-tests`, revision `master`
 - `phhusson/vendor_lptools`, revision `master`
 - `phhusson/vendor_magisk`, revision `android-10.0`
 - `AndyCGYan/android_packages_apps_QcRilAm`, revision `master`
-- `naz664/prebuilts_vndk_v28`, revision `master`
-- `platform/prebuilts/vndk/v29`, fixed revision `bef5d37dda9360940964f097d612c8032e140961`
-- `ponces/treble_adapter`, revision `master`
-- `MisterZtr/vendor_gapps`, revision `vic`
-- `Evolution-X/packages_apps_FaceUnlock`, revision `vic`
-- F-Droid privileged extension tag `0.2.13`
+- VNDK prebuilts v28, v29, and v30
+- `MP01-LineageOS/MP01-LineageGSI`, revision `lineage-23.2`
+- `lineageos4microg/android_vendor_partner_gms`, fixed revision
+  `4b3b48033245800142045ce78038166f8aff6b01`
+- `LineageOS/android_hardware_oplus`, revision `lineage-23.2`
 
-The MP01 fork should replace the `vendor_hardware_overlay` owner with
-`MP01-LineageOS` before publishing new builds.
+`buildmicrog.sh` removes proprietary `vendor/gapps` and the standalone F-Droid
+privileged extension from the microG build graph.
 
-## Reproducibility Requirements
+## Binary Inputs
 
-Before a release is considered reproducible:
+Pinned release inputs live in `MP01-LineageGSI/scripts/release-inputs.sh`:
 
-- All project remotes point at `MP01-LineageOS`.
-- Every floating branch used by the manifest is recorded as a commit SHA.
-- Downloaded APKs are versioned and checksum-verified.
-- The output image SHA256 is recorded.
-- The build log is archived.
-- The exact signing key identity is recorded without exposing private keys.
-- The release notes list every source repo and commit used.
+- repo launcher URL and SHA256
+- FinQwerty APK URL and SHA256
+- F-Droid 1.23.2 APK versioned URL, SHA256, and signing certificate SHA256
+- checked-in inkOS v0.1 APK SHA256
+- Treble presets commit and `infos.json` SHA256
+- Android 15 rollback baseline artifact metadata
 
-## First Build Target
-
-Start from the exact baseline release commit:
-
-- Release tag: `1755162498`
-- `MP01-LineageGSI` commit:
-  `99bd410eb7e620998db4be5246b23f36f531d4fe`
-- Local source worktree:
-  `/Users/j/Code/MP01/.worktrees/reproduce-1755162498`
-- Known-good release archive:
-  `/Users/j/Code/MP01/mp01-baseline/release-assets/MP01-Lineage-1755162498-signed.tar.gz`
-- Known-good release SHA256:
-  `d6b3f74d30ca84a186b926027afa7340a15450c5fd05720919cde57e1a887b1f`
-- Reconstructed source map:
-  [`baseline-source-map-1755162498.md`](baseline-source-map-1755162498.md)
-
-Build the vanilla target first:
+Run:
 
 ```bash
-lunch treble_arm64_bvN-bp1a-userdebug
-make target-files-package otatools -j$(nproc --all)
+bash scripts/verify-release-inputs.sh
 ```
 
-Defer GMS release work until the vanilla build is reproducible and the
-`WITH_ADB_INSECURE` issue in the GMS product is resolved.
+## Build Command
 
-The original signed tarball cannot be reproduced byte-for-byte without the
-original private signing keys. The practical target is to reproduce an
-equivalent source build, then sign future releases with intentionally managed
-`MP01-LineageOS` keys.
+```bash
+cd MP01-LineageGSI
+bash scripts/verify-release-inputs.sh
+bash buildmicrog.sh
+```
 
-## Current Execution Blockers
+`build.sh microg` is an equivalent entry point. `buildgms.sh` remains disabled
+until proprietary GMS release packaging is ported intentionally.
 
-- `/Users/j/Code/MP01` has a managed Codex container config, but a full Android
-  build has not been run in it yet.
-- `build.sh` still requires `~/.android-certs` before it will build, even for
-  the first vanilla reproduction attempt.
-- `build.sh` now uses pinned APK and repo-launcher inputs, but it still builds
-  from current maintained branches by default. Reproducing `1755162498` still
-  requires a controlled source checkout matching the baseline source map.
-- Several manifest inputs are floating branches. They need to be resolved to
-  commit SHAs before claiming reproducibility.
+## Output Requirements
 
-## Build Script Cleanup Before Use
+Every successful 23.2 build should produce:
 
-The inherited scripts should be updated before becoming official release
-scripts:
+- unsigned `system.img`
+- compressed image archive
+- SHA256 sums
+- resolved `repo manifest -r`
+- build-info file with branch, manifest, support repo, target, and output paths
+- retained build log
 
-- Remove destructive assumptions or make them explicit behind a flag.
-- Split sync, patch, build, sign, package, and publish into separate steps.
-- Keep release publishing separate from local build generation.
-- Avoid writing OTA metadata until artifacts and checksums are final.
+The updated build scripts write SHA256 sums, build info, and the resolved
+manifest under the image output directory by default.
 
-## Done Criteria
+## Release Criteria
 
-The first reproducible milestone is complete when a maintainer can:
+A 23.2 artifact is only a release candidate after:
 
-1. Sync source from documented revisions.
-2. Build the image.
-3. Produce the same image checksum from the same inputs.
-4. Flash the image to MP01.
-5. Confirm it matches the known working baseline checklist.
+1. The source sync/build completes from documented inputs.
+2. Output checksums and the resolved source manifest are archived.
+3. The image is flashed to MP01 by flashing `system` only.
+4. No `userdata`, `metadata`, recovery wipe, or factory reset is performed.
+5. The hardware test matrix passes or failures are documented as blocking known
+   issues.
+6. Signed release and OTA metadata paths are ported and install-tested.
+
+## Rollback Baseline
+
+The current known-good rollback baseline remains release `1755162498`, documented
+in [`baseline-source-map-1755162498.md`](baseline-source-map-1755162498.md) and
+[`../baselines/working-mp01-2026-05.md`](../baselines/working-mp01-2026-05.md).

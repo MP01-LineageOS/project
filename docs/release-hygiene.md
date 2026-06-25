@@ -13,13 +13,20 @@ traceable, and reversible.
   dependency to `MP01-LineageOS/vendor_hardware_overlay`.
 - FinQwerty release `76cef2d` and baseline OS release `1755162498` are mirrored
   into `MP01-LineageOS` GitHub releases with matching SHA256 digests.
+- The LineageOS 23.2 build path keeps signed release, OTA metadata, and
+  proprietary GMS packaging disabled until an unsigned microG image is built
+  and install-tested.
+- The 23.2 build path records SHA256 sums, build info, and a resolved source
+  manifest on successful local test builds.
 
 ## Remaining Issues Before Public Release
 
 - Ensure private signing keys are never committed, printed, uploaded, or
   required from a repo checkout.
-- Document whether a release is `user`, `userdebug`, vanilla, or GMS.
+- Document whether a release is `user`, `userdebug`, vanilla, microG, or GMS.
 - Separate dev/test artifacts from signed release artifacts.
+- Port signed release and OTA packaging after the 23.2 system image has passed
+  hardware smoke testing.
 
 ## Release Artifact Checklist
 
@@ -62,15 +69,16 @@ Use date-based versions until the project has stable release cadence:
 ```text
 MP01-LineageOS-YYYY.MM.DD-android15-vanilla
 MP01-LineageOS-YYYY.MM.DD-android15-gms
+MP01-LineageOS-YYYY.MM.DD-android16-microg
 ```
 
 Add `dev`, `userdebug`, or `test` to non-release builds.
 
 ## Immediate Follow-Up Work
 
-1. Convert release scripts into explicit build/sign/publish stages.
-2. Add source revision capture to release output.
-3. Turn accepted MP01 manual setup workarounds into build or first-boot
-   defaults.
-4. Define the upstream update policy for Android, TrebleDroid, Fossify, and
-   MP01 patches.
+1. Complete the 23.2 microG build from current branches.
+2. Flash `system` only and run the MP01 hardware smoke test.
+3. Port signed release packaging as a separate stage after the test image
+   boots.
+4. Keep OTA metadata disabled until artifact URLs, checksums, and install
+   behavior are verified.

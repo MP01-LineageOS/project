@@ -62,6 +62,11 @@ the resulting `.img` from `fastbootd`, then erase `userdata` and `metadata`.
 The phone was installed from the current latest original release,
 `1755162498`.
 
+This records the historical clean-install path for the accepted baseline. For
+future upgrades of an in-use MP01, do not erase `userdata`, erase `metadata`,
+run `fastboot -w`, or factory reset unless the operator explicitly confirms a
+data wipe for that session.
+
 ## Hardware Notes
 
 - Screen firmware version:

@@ -1,59 +1,71 @@
 # Upstream Dependencies
 
-This records the current fork and upstream map for `MP01-LineageOS`. Counts are
-from local fetches on May 24, 2026, with release-hygiene updates added on
-May 25, 2026.
+This records the current fork and upstream map for the active LineageOS 23.2 /
+Android 16 migration. The original Android 15 release `1755162498` remains the
+known-good rollback baseline.
 
 ## Maintained Forks
 
-| Repo | Purpose | Branch | Upstream | Drift |
+| Repo | Purpose | Active branch | Current local commit | Upstream |
 | --- | --- | --- | --- | --- |
-| `MP01-LineageGSI` | Primary build, release, signing, OTA, and MP01 product integration | `15` | `MisterZtr/LineageOS_gsi` | Contains release-hygiene commit `e070c60` on top of inherited `MP01Experiments/15` |
-| `treble_manifest` | Local manifest for Treble/Lineage dependency sync | `15-los-qpr2` | `MisterZtr/treble_manifest` | Contains manifest hygiene commit `bb7584f` on top of inherited `MP01Experiments/15-los-qpr2` |
-| `device_phh_treble` | PHH/TrebleDroid generic device tree and GSI targets | `android-16.0` | `TrebleDroid/device_phh_treble` | `0` ahead / `4` behind upstream `android-16.0`; identical to `MP01Experiments/android-16.0` |
-| `vendor_hardware_overlay` | Runtime resource overlays for vendor/device quirks, IMS, telephony, Wi-Fi, and Treble app wiring | `pie` | `TrebleDroid/vendor_hardware_overlay` | `9` ahead / `9` behind upstream `pie`; identical to `MP01Experiments/pie` |
-| `treble_app` | Privileged TrebleDroid settings app and preset application logic | `master` | `TrebleDroid/treble_app` | `7` ahead / `2` behind upstream `master`; identical to `MP01Experiments/master` |
-| `treble_presets` | Device preset database, including Minimal Phone MP01 presets | `master` | `TrebleDroid/treble_presets` | `1` ahead / `4` behind upstream `master`; identical to `MP01Experiments/master` |
-| `finqwerty` | Physical keyboard layout app with MP01 keymap support | `master` | `vbbot/finqwerty` | `6` ahead / `0` behind upstream `master`; identical to `MP01Experiments/master` |
-| `Phone` | Fossify Phone fork used in the MP01 image | `main` | `FossifyOrg/Phone` | `0` ahead / `244` behind upstream `main`; identical to `MP01Experiments/main` |
-| `Messages` | Fossify Messages fork used in the MP01 image | `main` | `FossifyOrg/Messages` | `0` ahead / `255` behind upstream `main`; identical to `MP01Experiments/main` |
-| `MP01-OS` | Coordination, roadmap, release notes, and maintainer docs | `main` | none | Active tracker repo |
+| `MP01-LineageGSI` | Primary build, release, patch, OTA, and MP01 product integration | `lineage-23.2` | `4ace87727bf7a6d19ae37b4bacf6c4b6e0e4a51c` | `MisterZtr/LineageOS_gsi` |
+| `treble_manifest` | Local manifest for Treble/Lineage dependency sync | `lineage-23.2` | `f5c12df0f07d1f2278326840010b1e481bdd273d` | `MisterZtr/treble_manifest` |
+| `device_phh_treble` | PHH/TrebleDroid generic device tree and GSI target support | `android-16.0` | `76d1a8549290bdbc154ed8a7445719016adb7068` | `TrebleDroid/device_phh_treble` |
+| `vendor_hardware_overlay` | Runtime resource overlays for vendor/device quirks, IMS, telephony, Wi-Fi, and Treble app wiring | `lineage-23.2` | `be7cf888f1ba8a9d9cf28c442eb38fbdb22d112f` | `TrebleDroid/vendor_hardware_overlay` |
+| `treble_app` | Privileged TrebleDroid settings app and preset application logic | `master` | `0cb1440e61c3f39afba9a5aa75eef6ab230a7cbe` | `TrebleDroid/treble_app` |
+| `treble_presets` | Device preset database, including Minimal Phone MP01 presets | `master` | `09fdae135930b553c54aba7aa9a07b105132b6ff` | `TrebleDroid/treble_presets` |
+| `finqwerty` | Physical keyboard layout app with MP01 keymap support | `master` | `76cef2d7c3577cb24d271e9c8de5fd430b535745` | `vbbot/finqwerty` |
+| `Phone` | Fossify Phone fork tracked for possible MP01 image integration | `main` | `aa1bde9909effc5a5b7a3f3d528e15c4377a5b54` | `FossifyOrg/Phone` |
+| `Messages` | Fossify Messages fork tracked for possible MP01 image integration | `main` | `9cbf3e46042bfaef02c7b28283c6e5ec50b42ec7` | `FossifyOrg/Messages` |
+| `MP01-OS` | Coordination, roadmap, release notes, and maintainer docs | `main` | active docs repo | none |
 
 ## Manifest Dependencies
 
-`treble_manifest/manifest.xml` currently pulls these external projects into
-the Android tree:
+`treble_manifest/manifest.xml` currently pulls these external projects into the
+LineageOS 23.2 Android tree:
 
 | Path | Project | Revision |
 | --- | --- | --- |
-| `device/phh/treble` | `TrebleDroid/device_phh_treble` | `android-15.0` |
-| `vendor/hardware_overlay` | `MP01-LineageOS/vendor_hardware_overlay` | `pie` |
+| `device/phh/treble` | `TrebleDroid/device_phh_treble` | `android-16.0` |
+| `treble_app` | `MP01-LineageOS/treble_app` | `master` |
+| `vendor/hardware_overlay` | `MP01-LineageOS/vendor_hardware_overlay` | `lineage-23.2` |
 | `vendor/vndk-tests` | `phhusson/vendor_vndk-tests` | `master` |
-| `vendor/interfaces` | `TrebleDroid/vendor_interfaces` | `android-15.0` |
+| `vendor/interfaces` | `TrebleDroid/vendor_interfaces` | `android-16.0` |
 | `vendor/lptools` | `phhusson/vendor_lptools` | `master` |
 | `vendor/magisk` | `phhusson/vendor_magisk` | `android-10.0` |
 | `packages/apps/QcRilAm` | `AndyCGYan/android_packages_apps_QcRilAm` | `master` |
 | `prebuilts/vndk/v28` | `naz664/prebuilts_vndk_v28` | `master` |
 | `prebuilts/vndk/v29` | `platform/prebuilts/vndk/v29` | `bef5d37dda9360940964f097d612c8032e140961` |
-| `treble_adapter` | `ponces/treble_adapter` | `master` |
-| `vendor/gapps` | `MisterZtr/vendor_gapps` | `vic` |
+| `prebuilts/vndk/v30` | `platform/prebuilts/vndk/v30` | `5f9884aa352825291757dfd6694b874ad8c1805e` |
+| `LineageOS_gsi` | `MP01-LineageOS/MP01-LineageGSI` | `lineage-23.2` |
+| `vendor/gapps` | `MindTheGapps/vendor_gapps` | `baklava` |
 | `vendor/partner_gms` | `lineageos4microg/android_vendor_partner_gms` | `4b3b48033245800142045ce78038166f8aff6b01` |
-| `packages/apps/FaceUnlock` | `Evolution-X/packages_apps_FaceUnlock` | `vic` |
-| `vendor/F-DroidPrivilegedExtension` | `privileged-extension.git` from F-Droid GitLab | `refs/tags/0.2.13` |
+| `hardware/oplus` | `LineageOS/android_hardware_oplus` | `lineage-23.2` |
+
+The current microG build removes proprietary `vendor/gapps` and the standalone
+F-Droid privileged extension from the local build graph before syncing/building.
+
+## App Integration Notes
+
+- The active 23.2 image currently packages `inkos`, `finqwerty`,
+  `MP01AccessibilityService`, `MP01_eink_server`, and microG/F-Droid packages.
+- The `Phone` and `Messages` Fossify forks are not active manifest or product
+  inputs for 23.2. The image uses the dialer and messaging packages inherited
+  from LineageOS/Treble until those forks are added as explicit, tested build
+  inputs.
+- Do not bulk-merge Fossify mainline or add these apps to the image without
+  MP01 e-ink readability, default-app, calls, SMS, and MMS testing.
 
 ## Maintenance Notes
 
-- The accepted baseline image is the original developer release
-  `1755162498`; do not treat current branch heads as a cryptographic rebuild
-  lock for that image.
-- `treble_manifest` now references `MP01-LineageOS/vendor_hardware_overlay`.
-  Keep this dependency on the MP01 org unless intentionally testing upstream
-  overlay drift.
-- `Phone` and `Messages` are far behind Fossify upstream. Do not bulk-merge
-  them without MP01 UI/e-ink testing.
+- Keep `vendor/hardware_overlay` and `LineageOS_gsi` on MP01-owned branches
+  unless intentionally testing upstream drift.
 - TrebleDroid components should be updated conservatively and together, because
   `device_phh_treble`, `vendor_hardware_overlay`, `treble_app`, and
   `treble_presets` interact at build and runtime.
-- `MP01-LineageGSI` and `treble_manifest` upstream defaults have moved toward
-  newer Lineage/Treble branches. Keep Android 15 maintenance separate from any
-  future Android 16/Lineage 23 migration.
+- Release candidates must archive `repo manifest -r`, image checksums, build
+  logs, and flashed-device test results before OTA metadata is updated.
+
+See [`upstream-update-policy.md`](upstream-update-policy.md) for the update
+cadence, smoke test requirements, and rollback expectations for these
+dependencies.

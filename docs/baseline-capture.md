@@ -35,6 +35,11 @@ That guide uses `fastbootd`, flashes `system.img`, erases `userdata`, erases
 original `MP01Experiments/MP01-LineageGSI` release:
 `MP01-Lineage-1755162498-signed.tar.gz`.
 
+Treat those erase steps as historical clean-install behavior. Future in-place
+upgrade sessions must preserve user data by default and require explicit
+operator confirmation before erasing `userdata`, erasing `metadata`, running
+`fastboot -w`, or factory resetting from recovery.
+
 ## Low-Risk ADB Snapshot
 
 Run from the project workspace with the phone connected and USB debugging
