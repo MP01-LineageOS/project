@@ -4,6 +4,50 @@ This is the working action list from the June 19, 2026 inventory of the
 LineageOS 23.2 update. Keep it ordered by release risk unless new findings
 change the priority.
 
+## 2026-06-25 qpublish snapshot
+
+This snapshot records the state after the qpublish upgrade to
+`patch-chain-v1`.
+
+Active staged submissions:
+
+- `treble_manifest` creates `lineage-23.2` from `15-los-qpr2` at `f5c12df`
+  (`20260624-221327-treble_manifest-f5c12df0f07d`, `patch-chain-v1`).
+- `vendor_hardware_overlay` creates `lineage-23.2` from `pie` at `417219f`
+  (`20260624-221029-vendor_hardware_overlay-417219f65c23`,
+  `patch-chain-v1`).
+- `treble_app` targets `master` at `0cb1440`
+  (`20260624-221329-treble_app-0cb1440e61c3`, `patch-chain-v1`).
+- `MP01-OS` needs a `patch-chain-v1` replacement because the old staged
+  `e4ed97f` range contains a merge commit. The replacement is staged from the
+  linear `qpublish-main-linear` branch after this tracker update.
+
+Active `needs_changes` submissions:
+
+- `MP01-LineageGSI` at `58f8d27`, targeting `15`. This is superseded by the
+  local `lineage-23.2` work at `a3e8352` and should not publish as-is.
+- `treble_manifest` at `19c2a81`, targeting `15-los-qpr2`. Do not publish it
+  as-is; the later create-target `lineage-23.2` submission is the intended
+  shape.
+
+Cleanup already done:
+
+- Cancelled the old `patch-series-v1` staged submissions for `treble_manifest`
+  and `treble_app` after temporary patch-chain validation passed.
+- Created a new overlay submission after the raised `vendor_hardware_overlay`
+  patch limit allowed the 23.2 overlay series.
+
+Known blockers to address next:
+
+- `MP01-LineageGSI -> lineage-23.2` is still not staged. Direct patch-chain
+  staging fails on intermediate binary overlay history, and a squashed staging
+  branch still fails because
+  `patches/trebledroid/platform_prebuilts_vndk_v29/0001-Add-android.hardware.audio.common-util-android.hardw.patch`
+  embeds six git binary-patch sections.
+- Decide whether to refactor that VNDK prebuilt patch into a qpublish-accepted
+  text representation, drop it, or request a qpublish policy exception for
+  embedded binary patches.
+
 ## 1. Close the release reproducibility gap
 
 The current LineageOS 23.2 integration is split across local branch heads that
@@ -13,14 +57,14 @@ can reproduce the active build inputs without depending on local-only state.
 
 Current branch heads:
 
-- `MP01-LineageGSI`: `mp01-23.2-release-gate` at `4e9a6c4`, targeting
+- `MP01-LineageGSI`: `mp01-23.2-release-gate` at `a3e8352`, targeting
   `lineage-23.2`.
 - `treble_manifest`: `mp01-23.2-manifest-docs` at `f5c12df`, targeting
   `lineage-23.2`.
-- `vendor_hardware_overlay`: `mp01-23.2-overlay-hygiene` at `987a98f`,
+- `vendor_hardware_overlay`: `mp01-23.2-overlay-hygiene` at `417219f`,
   targeting `lineage-23.2`.
-- `MP01-OS`: `main` is ahead of `origin/main` with migration docs and this
-  tracker.
+- `MP01-OS`: `qpublish-main-linear` is a linear replacement for the staged
+  `main` docs range.
 - `treble_app`: `master` is ahead of `origin/master` with the overlay workflow
   branch-target update.
 
@@ -35,18 +79,23 @@ Definition of done:
 
 Progress:
 
-- The relevant worktrees are clean.
-- `qstage --target-branch lineage-23.2` currently fails because the registry
-  remote does not have `lineage-23.2` branches yet.
-- Existing staged submissions target the registered default branches
-  (`15`, `15-los-qpr2`, and `pie`), so they do not by themselves create the
-  intended LineageOS 23.2 branch layout.
+- As of 2026-06-25, active `patch-chain-v1` staged submissions exist for
+  `treble_manifest -> lineage-23.2`, `vendor_hardware_overlay -> lineage-23.2`,
+  and `treble_app -> master`.
+- `MP01-OS -> main` is being replaced with a linear `patch-chain-v1`
+  submission.
+- An active staged submission is still missing for
+  `MP01-LineageGSI -> lineage-23.2`.
+- The older default-branch `treble_manifest` and `MP01-LineageGSI`
+  submissions are in `needs_changes` and should not be published as-is.
+- The old `patch-series-v1` staged submissions for `treble_manifest` and
+  `treble_app` were cancelled after patch-chain replacements were created.
 
 Open decision:
 
-- Either create/update the remote `lineage-23.2` branches through the delegated
-  publish flow before staging against them, or intentionally stage the 23.2
-  patch series onto the existing registered default branches.
+- Continue using create-target `lineage-23.2` submissions for the 23.2 branch
+  heads. Do not publish the Android 16/LineageOS 23.2 content onto the existing
+  Android 15 default branches.
 
 ## 2. Fix local build tooling blockers
 
@@ -77,6 +126,11 @@ Progress:
 - `JAVA_HOME=~/.local/share/jdks/temurin-17 ANDROID_HOME=~/.local/share/android-sdk
   ANDROID_SDK_ROOT=~/.local/share/android-sdk ./gradlew --no-daemon
   assembleDebug` passes for `MP01_accessibility_service`.
+- 2026-06-22 recheck: this shell no longer has `openssl`, `xmlstarlet`,
+  `java`, `javac`, or `keytool` on `PATH`, and `rpm -q` reports
+  `openssl`, `xmlstarlet`, and `java-21-openjdk-devel` missing. Restore these
+  before trusting release input verification, overlay tests, or Gradle
+  validation.
 
 ## 3. Secure the e-ink daemon boundary
 
